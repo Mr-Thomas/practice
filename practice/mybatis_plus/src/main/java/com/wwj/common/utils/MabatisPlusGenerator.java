@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 
 /**
- * Created by wangqichang on 2018/6/1.
+ * Created by Nancy on 2018/6/1.
  */
 public class MabatisPlusGenerator {
 

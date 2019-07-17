@@ -35,26 +35,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StreamTest {
 
-    private static final String PUBLIC_KEY = "publickey.txt";
-    @Test
-    public void getPublicKey(){
-        String publicKey = publicKey();
-        log.info("publicKey: {}",publicKey);
-    }
-    //io流读取配置文件
-    public String publicKey(){
-        Resource resource = new ClassPathResource(PUBLIC_KEY);
-        try {
-            InputStreamReader inputStreamReader = new InputStreamReader(resource.getInputStream());
-            BufferedReader br = new BufferedReader(inputStreamReader);
-            String publicKey = br.lines().collect(Collectors.joining("\n"));
-            return publicKey;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "获取公钥出错";
-    }
-
     /**
      * 如何把这个list转换成Map<Integer, User> 其中，key是user id，value是User对象
      */
