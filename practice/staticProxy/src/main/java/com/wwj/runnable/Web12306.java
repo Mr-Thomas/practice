@@ -21,7 +21,7 @@ public class Web12306 implements Runnable {
             if(num>0){  //代表可以卖票
                 try {
                     //卖票的时候增加个出票时间
-                    Thread.sleep(50);
+                    Thread.sleep(50); //计时等待(Timed Waiting)
                     System.out.println(Thread.currentThread().getName()+"正在卖: "+num--+" 号票");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
