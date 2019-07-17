@@ -2,13 +2,15 @@ package com.wwj.runnable;
 
 /**
  * 同步方法解决安全问题
- * <p>
- *  同步方法: 使用synchronized关键字修饰的方法
+ * 同步方法: 使用synchronized关键字修饰的方法
  *  格式:
- *  public synchronized void method(){
- *      可能出现线程安全问题的代码
- *  }
- * <p>
+ *      public synchronized void method(){
+ *          可能出现线程安全问题的代码
+ *      }
+ *  同步锁是谁呢?
+ *      1).非静态方法  同步锁  是 this
+ *      2).静态方法    同步锁  是 当前方法所在类的字节码文件对象 [类名.class]
+ *
  * Created by Nancy on 2019/7/15 0:06
  */
 public class Web12306_synchronized_method implements Runnable {
@@ -21,6 +23,7 @@ public class Web12306_synchronized_method implements Runnable {
         }
     }
 
+//  同步方法: 使用synchronized关键字修饰的方法
     public synchronized void method() {
         if (num > 0) {  //代表可以卖票
             try {
