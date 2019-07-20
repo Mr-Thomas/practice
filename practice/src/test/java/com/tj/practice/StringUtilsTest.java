@@ -1,12 +1,16 @@
 package com.tj.practice;
 
+import com.alibaba.fastjson.JSONObject;
+import com.tj.practice.common.util.MD5Util;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
+import java.math.RoundingMode;
+import java.util.*;
 import java.util.stream.Stream;
 
 @RunWith(SpringRunner.class)
@@ -54,6 +58,37 @@ public class StringUtilsTest {
     }
     @Test
     public void tesr03(){
-        System.out.println("测试svn");
+        Map<String, String> paramMap = new HashMap<String, String>() {
+            {
+                put("merchant_id","merchant_id");// 平台分配的商户号
+                put("pay_type","pay_type");   //支付类型
+                put("out_trade_no","fdsf154545");// 商户订单号
+                put("amount","2.00");// 金额
+                put("notify_url","localhost");
+                put("timestamp",new Date().getTime()+"");
+                put("secret","fdskladfjsiogjw");  //秘钥
+            }
+        };
+        sign4Mqf(paramMap);
+    }
+
+    public String sign4Mqf(Map<String, String> paramMap) {
+        if (paramMap == null || paramMap.isEmpty()) {
+            return null;
+        }
+        Set<String> keyset = new TreeSet<>();
+        keyset.addAll(paramMap.keySet());
+        StringBuilder paramBuilder = new StringBuilder();
+        keyset.forEach(key -> {
+            if (StringUtils.isNotBlank(paramMap.get(key)) && !StringUtils.equals(key, "sign")) {
+                paramBuilder.append(",").append(key).append(":").append(paramMap.get(key));
+            }
+        });
+        String substring = paramBuilder.substring(1);
+        log.error("签名前 {}",substring);
+        String ss = MD5Util.MD5Encode(substring, "UTF-8");
+        log.error("签名后 {}",ss);
+        return ss;
+
     }
 }
