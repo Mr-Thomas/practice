@@ -11,12 +11,31 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
 public class StringUtilsTest {
+    @Test
+    public void oo(){
+        String sss ="https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx030957263728778ebf2fcebc1500667700&package=3232615319";
+        int i1 = sss.indexOf("=")+1;
+        int i2 = sss.indexOf("&");
+        String substring = sss.substring(i1, i2);
+        System.out.println(substring);
+        String string = UUID.randomUUID().toString().replace("-","");
+        log.error("string:{}",string);
+    }
+    @Test
+    public void ttt(){
+        String s ="sjdd=DD2_20190808SNBWUM449397062&content=wcm6V78CrILSZEorkqQubmkBP11nuqvTg1Sjs4V6gZxuHalkqLRhfJEuEsS6Bz8pzIbc2fp%2Bmz%2BM4HV0BKB0gQ0eUZ7z8blY%2FCg1OupT1wp3UDXbkk%2BU0crI9OJ3rE9R&encryptType=AES";
+        Map<String, String> paramMap = Stream.of(s.split("&"))
+                .map(obj -> obj.split("="))
+                .collect(Collectors.toMap(entry -> entry[0], entry -> entry.length > 1 ? entry[1] : ""));
+        log.error("结果map：{}", paramMap);
+    }
 
     @Test
     public void test(){

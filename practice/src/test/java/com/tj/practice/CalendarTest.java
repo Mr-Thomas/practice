@@ -29,8 +29,10 @@ public class CalendarTest {
         String orderTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         System.out.println(orderTime);
 
-        long l = System.currentTimeMillis();
+        String l = System.currentTimeMillis()+"";
+        String substring = l.substring(0, l.length() - 3);
         System.out.println(l);
+        System.out.println(substring);
 
         long timeInMillis = calendar.getTimeInMillis();
         System.out.println(timeInMillis);    //效率 最慢
