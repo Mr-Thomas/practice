@@ -98,6 +98,15 @@ public class StreamTest {
         log.error("Map中所有的name列表：{}", names);
     }
 
+    @Test
+    public void str2map(){
+        String str ="k_no_order=DD2_201909207LCVXT265707136&k_oid_partner=SH100109&orderAmount=200.00&sign=1d646649a82112725f0a1da9369732da&status=1";
+        Map<String, String> paramMap = Stream.of(str.split("&"))
+                .map(obj -> obj.split("="))
+                .collect(Collectors.toMap(entry -> entry[0], entry -> entry.length > 1 ? entry[1] : ""));
+        log.error("结果map：{}", paramMap);
+    }
+
     /**
      * 将URL参数串，转成map
      */
