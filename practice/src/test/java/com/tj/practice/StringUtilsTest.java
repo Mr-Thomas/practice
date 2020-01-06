@@ -27,6 +27,9 @@ public class StringUtilsTest {
         System.out.println(substring);
         String string = UUID.randomUUID().toString().replace("-","");
         log.error("string:{}",string);
+        String code = "654024580000";
+//        String code = null;
+        log.error("code:{}",code != null ? code.substring(0,6) : "654000");
     }
     @Test
     public void ttt(){
