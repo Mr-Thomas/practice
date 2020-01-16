@@ -52,6 +52,8 @@ public class RedisTest {
         log.info("ids:{}",ids);
 
         Set<Object> set = redisUtil.rangeByScore(KEY, 0, Double.valueOf(System.currentTimeMillis()));
-        log.info("set:{}",set);
+        log.info("set:{}",set.toArray());
+
+        log.info("获取指定成员的score值：{}",redisUtil.score(KEY,"1"));
     }
 }
