@@ -1,5 +1,7 @@
 package com.tj.practice;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.google.common.collect.Lists;
 import com.tj.practice.common.util.ListUtil;
 import com.tj.practice.model.User;
@@ -52,5 +54,15 @@ public class ListTest {
                 log.info("ids:{}",ids);
             });
         }
+    }
+
+    @Test
+    public void List2String(){
+        List list = Arrays.asList("1", "2", "3", "4", "5");
+        String listStr = JSON.toJSONString(list);
+        log.info("listStr{}",listStr);
+
+        List lists = JSONArray.parseArray(listStr);
+        log.info("lists {}",lists);
     }
 }

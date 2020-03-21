@@ -23,13 +23,33 @@ public class CalendarTest {
         calendar = Calendar.getInstance();  //获取日历类
     }
 
+    /**
+     * 当前时间 前24小时 整点
+     */
+    @Test
+    public void TimeTest() {
+        long st = System.currentTimeMillis();
+        for (int i = 0; i < 24; i++) {
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+//            calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY) - i);
+            calendar.add(Calendar.HOUR_OF_DAY, -i);
+            Date date = calendar.getTime();
+            calendar = Calendar.getInstance();
+            String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+            System.out.println(format);
+        }
+        long ed = System.currentTimeMillis();
+        System.out.println(ed-st);
+    }
+
     //系统当前时间戳  三种方法
     @Test
-    public void testTimeMillis(){
+    public void testTimeMillis() {
         String orderTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         System.out.println(orderTime);
 
-        String l = System.currentTimeMillis()+"";
+        String l = System.currentTimeMillis() + "";
         String substring = l.substring(0, l.length() - 3);
         System.out.println(l);
         System.out.println(substring);
@@ -42,7 +62,7 @@ public class CalendarTest {
     }
 
     @Test
-    public void testt(){
+    public void testt() {
         Date time = calendar.getTime();
         System.out.println(time);   //  Mon May 20 09:35:22 CST 2019
         String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(time);
@@ -152,11 +172,11 @@ public class CalendarTest {
         Iterator<String> iterator = set.iterator();
         while (iterator.hasNext()) {
             String next = iterator.next();
-            log.error("next: {}",next);
+            log.error("next: {}", next);
             List<String> list = Arrays.asList(next.split("_"));
-            log.error("list.size(): {}",list.size());
+            log.error("list.size(): {}", list.size());
             if (list.size() == 3) {
-                log.error("list3: {}",list);
+                log.error("list3: {}", list);
                 String a = next.substring(0, next.indexOf("_"));
                 String b = next.substring(next.indexOf("_") + 1, next.lastIndexOf("_"));
                 String c = next.substring(next.lastIndexOf("_") + 1, next.length());
@@ -166,7 +186,7 @@ public class CalendarTest {
                 three.add(c);
             }
             if (list.size() == 4) {
-                log.error("list4: {}",list);
+                log.error("list4: {}", list);
                 one.add(list.get(0));
                 two.add(list.get(1));
                 three.add(list.get(2));
