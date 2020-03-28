@@ -64,6 +64,9 @@ public class StringUtilsTest {
                   //DD2_20190518MCFKZN522257506
         String s1 = s.substring(0, 3) + "_" + s.substring(3, s.length());
         System.out.println(s1);
+
+        int i = new Random().nextInt(100);
+        System.out.println(i);
     }
 
     @Test

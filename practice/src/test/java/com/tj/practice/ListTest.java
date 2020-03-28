@@ -32,7 +32,7 @@ public class ListTest {
 
     @Test
     public void addRedis() {
-        List list = Arrays.asList("1", "2", "3", "4", "5");
+        List list = Arrays.asList("1", "2", "3", "4", "5","6");
         list.forEach(ids -> {
             long currentTimestamp = System.currentTimeMillis();
             log.info("currentTimestamp:{}", currentTimestamp);
