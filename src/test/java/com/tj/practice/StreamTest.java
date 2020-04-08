@@ -35,6 +35,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StreamTest {
 
+    @Test
+    public void testList() {
+        List<Integer> list00 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> list11 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        List<Integer> collect = list11.stream().filter(a -> !list00.contains(a)).collect(Collectors.toList());
+        System.out.println(collect);
+
+    }
+
     /**
      * 如何把这个list转换成Map<Integer, User> 其中，key是user id，value是User对象
      */
@@ -99,8 +109,8 @@ public class StreamTest {
     }
 
     @Test
-    public void str2map(){
-        String str ="k_no_order=DD2_201909207LCVXT265707136&k_oid_partner=SH100109&orderAmount=200.00&sign=1d646649a82112725f0a1da9369732da&status=1";
+    public void str2map() {
+        String str = "k_no_order=DD2_201909207LCVXT265707136&k_oid_partner=SH100109&orderAmount=200.00&sign=1d646649a82112725f0a1da9369732da&status=1";
         Map<String, String> paramMap = Stream.of(str.split("&"))
                 .map(obj -> obj.split("="))
                 .collect(Collectors.toMap(entry -> entry[0], entry -> entry.length > 1 ? entry[1] : ""));
@@ -123,21 +133,21 @@ public class StreamTest {
 
         //转json串
         String jsonStrStr = JSON.toJSONString(paramMap);
-        log.error("jsonStrStr: {}",jsonStrStr);
+        log.error("jsonStrStr: {}", jsonStrStr);
 
         //base64加密
         String base64Str = java.util.Base64.getEncoder().encodeToString(jsonStrStr.getBytes(StandardCharsets.UTF_8));
-        log.error("base64加密: {}",base64Str);
+        log.error("base64加密: {}", base64Str);
         //Base64数据特殊处理:“+”替换为“%2B”
         String replace = base64Str.replace("+", "%2B");
-        log.error("replace: {}",replace);
+        log.error("replace: {}", replace);
 
         //base64解密
         String reqJson = new String(java.util.Base64.getDecoder().decode(base64Str.getBytes(StandardCharsets.UTF_8)));
         log.error("base64解密：{}", reqJson);
         //转json对象
         JSONObject jsonObject = JSONObject.parseObject(jsonStrStr);
-        log.error("jsonObject: {}",jsonObject);
+        log.error("jsonObject: {}", jsonObject);
     }
 
     /**

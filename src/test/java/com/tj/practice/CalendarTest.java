@@ -23,6 +23,19 @@ public class CalendarTest {
         calendar = Calendar.getInstance();  //获取日历类
     }
 
+    @Test
+    public void ttst(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date date = calendar.getTime();
+        String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+        String endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        System.out.println(startTime+" - "+endTime);
+    }
+
     /**
      * 当前时间 前24小时 整点
      */
