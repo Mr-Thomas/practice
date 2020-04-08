@@ -23,8 +23,9 @@ public class CalendarTest {
         calendar = Calendar.getInstance();  //获取日历类
     }
 
+    //当前时间 当天时间段
     @Test
-    public void ttst(){
+    public void ttst() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -33,7 +34,7 @@ public class CalendarTest {
         Date date = calendar.getTime();
         String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
         String endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        System.out.println(startTime+" - "+endTime);
+        System.out.println(startTime + " - " + endTime);
     }
 
     /**
@@ -53,7 +54,7 @@ public class CalendarTest {
             System.out.println(format);
         }
         long ed = System.currentTimeMillis();
-        System.out.println(ed-st);
+        System.out.println(ed - st);
     }
 
     //系统当前时间戳  三种方法
