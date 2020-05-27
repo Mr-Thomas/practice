@@ -23,6 +23,21 @@ public class CalendarTest {
         calendar = Calendar.getInstance();  //获取日历类
     }
 
+    @Test
+    public void te(){
+        for (int i = 7; i > 0; i--) {
+            calendar.add(Calendar.MONTH,-1);
+            calendar.add(Calendar.DAY_OF_MONTH,-i);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            Date date = calendar.getTime();
+            calendar = Calendar.getInstance();
+            String startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+            System.out.println(startTime);
+        }
+    }
+
     //当前时间 当天时间段
     @Test
     public void ttst() {
