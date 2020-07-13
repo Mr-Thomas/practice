@@ -66,7 +66,7 @@ public class RedisTest {
 
     @Test
     public void getFileByImgURL() throws Exception {
-        String URL = "http://192.168.101.1:19091/staticResource/v1/storage/permanent/fid/1590560261111001999";
+        String URL = "http://192.168.101.1:19091/staticResource/v1/storage/cycle/fid/1590997048623001999";
 //        String URL = "https://192.168.101.1/staticResource/v1/storage/permanent/fid/1590560261111001999";
         String fileBase64 = Base64Util.encodeToString(ImgBase64.getImageBase64(URL));
         log.info("base64图片：{}", fileBase64);
