@@ -38,9 +38,15 @@ public class RedisTest {
         List<String> list = Arrays.asList("deviceId00", "deviceId01");
         Map<String, List<String>> map = new HashMap<String, List<String>>() {{
             put("deviceId00", Arrays.asList("摄像头id00", "摄像头id01", "摄像头id02"));
-            put("deviceId01", Arrays.asList("摄像头id03", "摄像头id04", "摄像头id05", "摄像头id06"));
+            put("deviceId01", Arrays.asList("摄像头id03", "摄像头id04", "摄像头id05", "摄像头id06","摄像头"));
             put("deviceId02", Arrays.asList("摄像头id07", "摄像头id08", "摄像头id09"));
+            put("deviceId03", Arrays.asList("摄像头id07", "摄像头id08", "摄像头id09"));
         }};
+        redisUtil.remove(DEVICE_ID_CID_KEY);
+        redisUtil.setHashMap(DEVICE_ID_CID_KEY, map);
+        redisUtil.del(DEVICE_ID_CID_KEY);
+        redisUtil.setHashMap(DEVICE_ID_CID_KEY, map);
+        redisUtil.delete(DEVICE_ID_CID_KEY);
         redisUtil.setHashMap(DEVICE_ID_CID_KEY, map);
         Map<String, List<String>> hashMap = redisUtil.getHashMap(DEVICE_ID_CID_KEY);
         log.info("Redis设备id和摄像头id map:{}", hashMap);
@@ -50,6 +56,8 @@ public class RedisTest {
             stringList.addAll(o);
         }
         log.info("摄像头id集合：{}", stringList);
+        List<String> deviceIds = (List<String>) redisUtil.getHashKey(DEVICE_ID_CID_KEY, "deviceId00");
+        log.info("deviceIds:{}",deviceIds);
         String deviceId = getDeviceIdByCid(hashMap, "摄像头id03");
         log.info("根据摄像头id 取设备id：{}", deviceId);
     }
