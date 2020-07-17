@@ -42,19 +42,24 @@ public class CalendarTest {
      */
     @Test
     public void TimeTest() {
-        long st = System.currentTimeMillis();
-        for (int i = 0; i < 24; i++) {
+        List<String> list = new ArrayList<>();
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        String endTime = time.substring(time.lastIndexOf(" ")+1, time.lastIndexOf(" ") + 3);
+        if("0".equals(endTime.substring(0,1))){
+            endTime = endTime.substring(1,2);
+        }
+        int substring = Integer.parseInt(endTime);
+        System.out.println(substring);
+        for (int i = 0; i <substring  ; i++) {
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
-//            calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY) - i);
             calendar.add(Calendar.HOUR_OF_DAY, -i);
             Date date = calendar.getTime();
             calendar = Calendar.getInstance();
             String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-            System.out.println(format);
+            list.add(format);
         }
-        long ed = System.currentTimeMillis();
-        System.out.println(ed - st);
+        System.out.println(list);
     }
 
     //系统当前时间戳  三种方法
